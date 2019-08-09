@@ -32,11 +32,8 @@ app.get("/api/tableData", function(req, res) {
 });
 
 app.get("/api/waitlistData", function(req, res) {
-    res.json(waitlistData);
+    res.json(waitlist);
 });
-
-
-
 
 
 function Reservation(name, email, phoneNumber, id) {
@@ -45,33 +42,29 @@ function Reservation(name, email, phoneNumber, id) {
     this.phoneNumber = phoneNumber;
     this.id = id;
 }
-var reservations = [{ 
-  
-}];
-
-var waitList = [{
+var reservations = [{
 
 }];
-    app.post("/api/tableData", function(req, res) {
 
-        var newRes = req.body;
-        newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
-        console.log(newRes);
-        if (reservations.length <= 5) {
+var waitlist = [{
+
+}];
+
+app.post("/api/tableData", function(req, res) {
+
+    var newRes = req.body;
+    // newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
+    console.log(newRes);
+    if (reservations.length < 5) {
         reservations.push(newRes);
-        res.json(newRes);
-        }
-        else {
-        waitList.push(newRes);
-        res.json(newRes);
-        }
+        res.send(true);
+    } else {
+        waitlist.push(newRes);
+        res.send(false);
+    }
 })
-app.get("/api/reservations", function(req, res) {
-  return res.json(reservations);
-});
-app.get("/api/waitlist", function(req, res) {
-  return res.json(waitList);
-});
+
+
 
 // Starts the server to begin listening
 // =============================================================
