@@ -33,13 +33,14 @@ function Reservation(name, email, phoneNumber, id) {
     this.phoneNumber = phoneNumber;
     this.id = id;
 }
-var reservations = [{ 
+var reservations = [
+  { 
   name: "David King",
   email: "DavidKing@gmail.com",
   phoneNumber: "804-123-4567",
   id: "ThisIsDavidKing"
-
-}];
+  }
+];
 
 if (reservations.length <= 5) {
   app.post("/api/tableData", function(req, res) {
@@ -58,7 +59,9 @@ if (reservations.length <= 5) {
     res.json(newRes);
 })
 }
-
+app.get("/api/reservations", function(req, res) {
+  return res.json(reservations);
+});
 
 // Starts the server to begin listening
 // =============================================================
