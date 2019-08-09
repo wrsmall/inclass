@@ -1,5 +1,5 @@
-var reservations = require('./data');
-var waitlist = require('./data');
+var reservations = require('./reservations');
+var waitlist = require('./waitlist');
 
 //////////////////////////    API Routes
 
@@ -15,7 +15,7 @@ module.exports = function(app) {
     app.post("/api/tableData", function(req, res) {
 
         var newRes = req.body;
-        if (reservations.length <= 5) {
+        if (reservations.length < 5) {
             reservations.push(newRes);
             res.send(true);
         } else {
