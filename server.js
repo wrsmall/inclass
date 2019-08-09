@@ -46,35 +46,26 @@ function Reservation(name, email, phoneNumber, id) {
     this.id = id;
 }
 var reservations = [{ 
-  name: "David King",
-  email: "DavidKing@gmail.com",
-  phoneNumber: "804-123-4567",
-  id: "ThisIsDavidKing"
-
+  
 }];
 
 var waitList = [{
 
 }];
-function postStuff(name, email, phoneNumber, id) {
-if (reservations.length < 6) {
     app.post("/api/tableData", function(req, res) {
+
         var newRes = req.body;
         newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
         console.log(newRes);
+        if (reservations.length <= 5) {
         reservations.push(newRes);
         res.json(newRes);
-    })
-} else {
-    app.post("/api/waitlistData", function(req, res) {
-        var newRes = req.body;
-        newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
-        console.log(newRes);
-        reservations.push(newRes);
+        }
+        else {
+        waitList.push(newRes);
         res.json(newRes);
-    })
-}
-}
+        }
+})
 app.get("/api/reservations", function(req, res) {
   return res.json(reservations);
 });
