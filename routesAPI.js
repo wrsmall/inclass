@@ -1,5 +1,5 @@
-var reservations = require('./server');
-var waitlist = require('./server');
+var reservations = require('./data');
+var waitlist = require('./data');
 
 //////////////////////////    API Routes
 
