@@ -30,7 +30,7 @@ else {
     });
 }
 
-app.post("/tableData", function(req, res){
+app.post("/api/tableData", function(req, res){
   var newRes = req.body;
   newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
   console.log(newRes);
