@@ -45,11 +45,19 @@ function Reservation(name, email, phoneNumber, id) {
     this.phoneNumber = phoneNumber;
     this.id = id;
 }
+<<<<<<< HEAD
 var reservations = [{
     name: "David King",
     email: "DavidKing@gmail.com",
     phoneNumber: "804-123-4567",
     id: "ThisIsDavidKing"
+=======
+var reservations = [{ 
+  name: "David King",
+  email: "DavidKing@gmail.com",
+  phoneNumber: "804-123-4567",
+  id: "ThisIsDavidKing"
+>>>>>>> d2aa21a7b7dae62b045237deab302e0078b82b8f
 
 }];
 
@@ -70,7 +78,6 @@ if (reservations.length <= 5) {
         res.json(newRes);
     })
 }
-
 
 
 // Starts the server to begin listening
