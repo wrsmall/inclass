@@ -56,8 +56,8 @@ var reservations = [{
 var waitList = [{
 
 }];
-
-if (reservations.length <= 5) {
+function postStuff() {
+if (reservations.length < 6) {
     app.post("/api/tableData", function(req, res) {
         var newRes = req.body;
         newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
@@ -73,6 +73,7 @@ if (reservations.length <= 5) {
         reservations.push(newRes);
         res.json(newRes);
     })
+}
 }
 app.get("/api/reservations", function(req, res) {
   return res.json(reservations);
