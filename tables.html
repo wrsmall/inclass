@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tables</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
 </head>
 
 <body>
@@ -59,5 +62,71 @@
 
 
 </body>
+
+<script type="text/javascript">
+    function viewTables() {
+        $.ajax({
+                url: "/api/tableData",
+                method: "GET"
+            })
+            .then(function(reservations) {
+
+                for (var i = 0; i < reservations.length; i++) {
+
+
+                    var tables = $("#tableSection");
+
+                    var dataReserve = $("<li class='list-group-item m-4'>");
+
+                    dataReserve.append(
+                        $("<h4>").text("Party: " + reservations[i].name),
+                        $("<hr>"),
+                        $("<h4>").text("Contact Info"),
+                        $("<h6>").text("Phone: " + reservations[i].phoneNumber),
+                        $("<h6>").text("Email: " + reservations[i].email),
+                        $("<hr>"),
+                        $("<h5>").text("ID:  " + reservations[i].id)
+                    );
+
+                    tables.append(dataReserve);
+                }
+            });
+    }
+
+
+    function viewWaitlist() {
+
+        $.ajax({
+                url: "/api/waitlistData",
+                method: "GET"
+            })
+            .then(function(waitlist) {
+
+                for (var i = 0; i < waitlist.length; i++) {
+
+                    var waitinglist = $("#waitlistSection");
+
+                    var dataWait = $("<li class='list-group-item m-4'>");
+
+                    dataWait.append(
+                        $("<h4>").text("Party: " + waitlist[i].name),
+                        $("<hr>"),
+                        $("<h4>").text("Contact Info"),
+                        $("<h6>").text("Phone: " + waitlist[i].phoneNumber),
+                        $("<h6>").text("Email: " + waitlist[i].email),
+                        $("<hr>"),
+                        $("<h5>").text("ID:  " + waitlist[i].id)
+                    );
+
+                    waitinglist.append(dataWait);
+                }
+            });
+    }
+
+
+
+    viewTables();
+    viewWaitlist();
+</script>
 
 </html>

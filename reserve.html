@@ -84,8 +84,8 @@
         event.preventDefault();
         var reservations = {
             name: $("#reserve_name").val().trim(),
-            email: $("#reserve_email").val().trim(),
             phoneNumber: $("#reserve_phone").val().trim(),
+            email: $("#reserve_email").val().trim(),
             id: $("#reserve_uniqueID").val().trim()
         };
 
@@ -97,6 +97,11 @@
                 } else {
                     alert("You were added to the wait list.")
                 }
+
+                $("#reserve_name").val("");
+                $("#reserve_phone").val("");
+                $("#reserve_email").val("");
+                $("#reserve_uniqueID").val("");
             });
     })
 </script>
