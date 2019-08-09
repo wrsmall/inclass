@@ -42,13 +42,9 @@ function Reservation(name, email, phoneNumber, id) {
     this.phoneNumber = phoneNumber;
     this.id = id;
 }
-var reservations = [{
+var reservations = [];
 
-}];
-
-var waitlist = [{
-
-}];
+var waitlist = [];
 
 app.post("/api/tableData", function(req, res) {
 
