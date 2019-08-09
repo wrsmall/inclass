@@ -6,7 +6,7 @@ var app = express();
 var fs = fs;
 var PORT = process.env.PORT || 3000;
 var path = path;
-
+// var PORTTWO = process.env.PORT|| 4000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -14,15 +14,15 @@ app.use(express.json());
 
 //////////////////////////   Routes
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 app.get("/reserve", function(req, res) {
-    res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 
@@ -38,22 +38,24 @@ var reservations = [{
 }];
 
 if (reservations.length <= 5) {
-    app.get("/add", function(req, res) {
-        res.sendFile(path.join(__dirname, "add.html"));
-    });
-} else {
-    app.get("/add", function(req, res) {
-        res.sendFile(path.join(__dirname, "waitlist.html"));
-    });
-}
-
-app.post("/tableData", function(req, res) {
+  app.post("/api/tableData", function(req, res) {
     var newRes = req.body;
     newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
     console.log(newRes);
     reservations.push(newRes);
     res.json(newRes);
 })
+} else {
+  app.post("/api/waitlistData", function(req, res) {
+    var newRes = req.body;
+    newRes.routeName = newRes.name.replace(/\s+/g, "").toLowerCase();
+    console.log(newRes);
+    reservations.push(newRes);
+    res.json(newRes);
+})
+}
+
+
 
 // Starts the server to begin listening
 // =============================================================
