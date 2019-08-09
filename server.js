@@ -56,7 +56,7 @@ var reservations = [{
 var waitList = [{
 
 }];
-function postStuff() {
+function postStuff(name, email, phoneNumber, id) {
 if (reservations.length < 6) {
     app.post("/api/tableData", function(req, res) {
         var newRes = req.body;
